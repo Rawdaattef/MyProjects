@@ -17,7 +17,6 @@ public class IndividualService {
         return repo.save(individual);
     }
 
-
     //saving bulk
     public List<Individual> saveInds(List<Individual> individuals) {
         return repo.saveAll(individuals);
