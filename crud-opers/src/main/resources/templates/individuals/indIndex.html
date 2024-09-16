@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accounts Manager </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .wide-col {
+            width: 300px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+<div class="container my-3">
+    <h1 class="text-center mb-3">List Of Accounts</h1>
+    <a class="btn btn-primary" href="/create">Add a new Individual</a>
+
+    <table style="margin-top: 20px;">
+        <thead>
+        <th>National ID</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Loan</th>
+        <th>Action</th>
+        </thead>
+
+        <tbody class="table-group-divider">
+        <!-- Thymeleaf template for iterating through individuals -->
+        <tr th:each="ind : ${individuals}">
+            <td th:text="${ind.nationalID}"></td>
+            <td th:text="${ind.name}"></td>
+            <td th:text="${ind.balance}"></td>
+            <td th:text="${ind.loan}"></td>
+            <td style="white-space:nowrap">
+                <a class="btn btn-secondary" th:href="@{/update/{nationalID}(nationalID=${ind.nationalID})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/delete(nationalID=${ind.nationalID})}"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
